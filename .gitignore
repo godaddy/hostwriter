@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Test artifacts
+.nyc_output
+.eslintcache
+
+# Development artifacts
+npm-debug.log*
+.npm
+.node_repl_history
+
+# Editor artifacts
+.idea
