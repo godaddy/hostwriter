@@ -2,6 +2,7 @@
 
 API and CLI for querying and manipulating host files.
 
+![Build Status](https://travis-ci.org/godaddy/hostwriter.svg?branch=master)
 
 ## Installation
 
