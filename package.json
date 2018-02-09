@@ -30,6 +30,7 @@
   },
   "scripts": {
     "pretest": "eslint ./lib ./test",
-    "test": "nyc mocha --recursive ./test/specs"
+    "test": "nyc mocha --recursive ./test/specs",
+    "prepublish": "npm run test"
   }
 }

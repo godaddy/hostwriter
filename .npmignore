@@ -3,6 +3,7 @@ node_modules
 test
 .gitignore
 .npmignore
+.npmrc
 .travis.yml
 package-lock.json
 README.md
