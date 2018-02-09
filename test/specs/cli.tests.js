@@ -1,5 +1,5 @@
 const proxyquire = require('proxyquire');
-const { match, stub } = require('sinon');
+const { match, spy } = require('sinon');
 const { expect } = require('chai');
 const { Writable } = require('stream');
 const FsStub = require('../stubs/fs');
@@ -9,8 +9,8 @@ describe('The command-line interface', () => {
   let fs, writtenFile;
 
   beforeEach(() => {
-    stub(console, 'log');
-    stub(console, 'error');
+    spy(console, 'log');
+    spy(console, 'error');
 
     fs = new FsStub();
     stubWriteStream();
@@ -166,7 +166,7 @@ describe('The command-line interface', () => {
   }
 
   function invokeCLI() {
-    proxyquire.noCallThru()('../../lib/cli', {
+    return proxyquire.noPreserveCache().noCallThru()('../../lib/cli', {
       './host-writer': proxyquire.noCallThru()('../../lib/host-writer', { fs })
     });
   }

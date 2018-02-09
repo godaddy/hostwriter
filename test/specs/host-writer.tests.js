@@ -196,6 +196,30 @@ describe('host-writer', () => {
         process.exit.restore();
       }
     });
+
+    it('does not block exits if the hostfile cannot be written to', async () => {
+      try {
+        stub(process, 'once').returnsThis();
+        stub(process, 'exit');
+        stubHostFile('#127.0.0.1 example.com');
+
+        await new HostWriter().untilExit({
+          'example.com': '127.0.0.1',
+          'beta.example.com': '127.0.0.2'
+        });
+
+        expect(writtenFile).to.equal(['127.0.0.1  example.com', '127.0.0.2  beta.example.com'].join(EOL));
+        stubHostFile(writtenFile);
+        stubFailingWriteStream();
+
+        const sigtermHandler = process.once.args.find(([handler]) => handler === 'SIGTERM')[1];
+        await sigtermHandler();
+        expect(process.exit).to.have.been.called;
+      } finally {
+        process.once.restore();
+        process.exit.restore();
+      }
+    });
   });
 
   function stubHostFile(contents) {
@@ -208,6 +232,15 @@ describe('host-writer', () => {
       write(chunk, encoding, cb) {
         writtenFile += chunk;
         cb(null);
+      }
+    }));
+  }
+
+  function stubFailingWriteStream() {
+    writtenFile = '';
+    fs.createWriteStream.withArgs('/etc/hosts').returns(new Writable({
+      write(chunk, encoding, cb) {
+        cb(new Error('Permission denied'));
       }
     }));
   }

@@ -30,6 +30,6 @@
   },
   "scripts": {
     "pretest": "eslint ./lib ./test",
-    "test": "nyc mocha --recursive ./test"
+    "test": "nyc mocha --recursive ./test/specs"
   }
 }
