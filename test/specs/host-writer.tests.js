@@ -174,7 +174,7 @@ describe('host-writer', () => {
   describe('untilExit method', () => {
     it('assigns the given host addresses, then resets on exit signals', async () => {
       try {
-        stub(process, 'once').returnsThis();
+        stub(process, 'on').returnsThis();
         stub(process, 'exit');
         stubHostFile('#127.0.0.1 example.com');
 
@@ -187,19 +187,20 @@ describe('host-writer', () => {
         stubHostFile(writtenFile);
         stubWriteStream();
 
-        const sigtermHandler = process.once.args.find(([handler]) => handler === 'SIGTERM')[1];
+        const sigtermHandler = process.on.args.find(([handler]) => handler === 'SIGTERM')[1];
         await sigtermHandler();
 
         expect(writtenFile).to.equal(['#127.0.0.1 example.com', '#127.0.0.2 beta.example.com'].join(EOL));
+        expect(process.exit).to.have.been.calledWith(0);
       } finally {
-        process.once.restore();
+        process.on.restore();
         process.exit.restore();
       }
     });
 
     it('does not block exits if the hostfile cannot be written to', async () => {
       try {
-        stub(process, 'once').returnsThis();
+        stub(process, 'on').returnsThis();
         stub(process, 'exit');
         stubHostFile('#127.0.0.1 example.com');
 
@@ -212,11 +213,11 @@ describe('host-writer', () => {
         stubHostFile(writtenFile);
         stubFailingWriteStream();
 
-        const sigtermHandler = process.once.args.find(([handler]) => handler === 'SIGTERM')[1];
+        const sigtermHandler = process.on.args.find(([handler]) => handler === 'SIGTERM')[1];
         await sigtermHandler();
         expect(process.exit).to.have.been.called;
       } finally {
-        process.once.restore();
+        process.on.restore();
         process.exit.restore();
       }
     });
