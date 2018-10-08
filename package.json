@@ -12,6 +12,9 @@
     "hostfile": "./lib/cli.js"
   },
   "main": "./lib",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "dependencies": {
     "ip": "^1.1.5",
     "rxjs": "^5.5.6"
