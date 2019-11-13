@@ -1,6 +1,6 @@
 {
   "name": "@godaddy/hostfile",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "API and CLI for querying and manipulating host files",
   "license": "MIT",
   "repository": {
