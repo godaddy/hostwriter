@@ -5,7 +5,9 @@ const { Writable } = require('stream');
 const FsStub = require('../stubs/fs');
 const MemoryStream = require('../stubs/memory-stream');
 
-describe('The command-line interface', () => {
+describe('The command-line interface', function () {
+  this.timeout(10000);
+
   let fs, writtenFile;
 
   beforeEach(() => {
