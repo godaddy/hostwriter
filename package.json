@@ -16,7 +16,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "ip": "^1.1.5",
+    "ip": "^1.1.8",
     "rxjs": "^5.5.6"
   },
   "devDependencies": {
