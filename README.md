@@ -7,6 +7,8 @@ API and CLI for querying and manipulating host files.
 
 ## Installation
 
+Requires Node.js 20 or later.
+
 First, an important note. By default, most operating systems protect your host file by restricting write permissions.
 You'll need to change the permissions on that file before you can use the API or CLI to modify the file. For example:
 
