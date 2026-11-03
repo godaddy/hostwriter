@@ -2,15 +2,20 @@
 
 API and CLI for querying and manipulating host files.
 
-![Build Status](https://travis-ci.org/godaddy/hostwriter.svg?branch=master)
-
-> ⚠️ **DEPRECATED**: This package is no longer maintained and should not be used in new projects. Please consider using alternative solutions for host file management.
 
 ## Installation
+
+Requires Node.js 20 or later.
 
 First, an important note. By default, most operating systems protect your host file by restricting write permissions.
 You'll need to change the permissions on that file before you can use the API or CLI to modify the file. For example:
 
+MacOS:
+```shell
+sudo chmod +a "$USER allow read,write" /etc/hosts
+```
+
+Linux:
 ```shell
 sudo chown %USER: /etc/hosts
 ```
