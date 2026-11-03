@@ -12,6 +12,9 @@
     "hostfile": "./lib/cli.js"
   },
   "main": "./lib",
+  "engines": {
+    "node": ">=20"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
