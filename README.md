@@ -4,7 +4,6 @@ API and CLI for querying and manipulating host files.
 
 ![Build Status](https://travis-ci.org/godaddy/hostwriter.svg?branch=master)
 
-> ⚠️ **DEPRECATED**: This package is no longer maintained and should not be used in new projects. Please consider using alternative solutions for host file management.
 
 ## Installation
 
